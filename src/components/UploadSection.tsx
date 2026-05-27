@@ -82,12 +82,12 @@ export default function UploadSection({
       className="w-full"
     >
       {/* Hero */}
-      <div className="mb-14 text-center">
+      <div className="mb-16 text-center sm:mb-20">
         <motion.div
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full border border-primary-400/30 bg-primary-500/15 px-4 py-1.5"
+          className="mx-auto mb-8 inline-flex items-center gap-2 rounded-full border border-primary-400/30 bg-primary-500/15 px-5 py-2"
         >
           <Sparkles className="h-3.5 w-3.5 text-primary-400" />
           <span className="text-xs font-semibold text-primary-300">
@@ -112,7 +112,7 @@ export default function UploadSection({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.35 }}
-          className="mt-4 text-sm text-surface-400 sm:text-base"
+          className="mt-6 text-sm leading-relaxed text-surface-400 sm:text-base"
         >
           Upload a resume and describe the role to get an instant match report.
         </motion.p>
@@ -123,11 +123,11 @@ export default function UploadSection({
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.35 }}
-        className="mb-8"
+        className="mb-10 sm:mb-12"
       >
         <div
           {...getRootProps()}
-          className={`group cursor-pointer rounded-2xl border-2 border-dashed p-1 transition-all duration-200 ${
+          className={`group cursor-pointer rounded-2xl border-2 border-dashed p-2 transition-all duration-200 ${
             isDragActive
               ? 'border-primary-400 bg-primary-500/10'
               : file
@@ -137,7 +137,7 @@ export default function UploadSection({
         >
         <input {...getInputProps()} />
 
-        <div className="flex flex-col items-center py-14">
+        <div className="flex flex-col items-center py-16 sm:py-20">
           <AnimatePresence mode="wait">
             {file ? (
               <motion.div
@@ -201,9 +201,9 @@ export default function UploadSection({
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
-        className="mb-8 rounded-2xl border border-surface-700 bg-surface-800/60 p-6"
+        className="mb-10 rounded-2xl border border-surface-700 bg-surface-800/60 p-7 sm:mb-12 sm:p-8"
       >
-        <label className="mb-3 block text-sm font-semibold text-white">
+        <label className="mb-4 block text-sm font-semibold text-white">
           Job Description
         </label>
         <textarea
@@ -213,8 +213,8 @@ export default function UploadSection({
             if (error) setError('');
           }}
           placeholder="e.g., Senior Frontend Developer with React, TypeScript, 3+ years of experience..."
-          rows={4}
-          className="w-full resize-none rounded-xl border border-surface-600 bg-surface-900 px-4 py-3.5 text-sm leading-relaxed text-white placeholder-surface-500 outline-none transition-all focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
+          rows={5}
+          className="w-full resize-none rounded-xl border border-surface-600 bg-surface-900 px-5 py-4 text-sm leading-relaxed text-white placeholder-surface-500 outline-none transition-all focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20"
         />
       </motion.div>
 
@@ -225,9 +225,9 @@ export default function UploadSection({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="mb-5 overflow-hidden"
+            className="mb-8 overflow-hidden"
           >
-            <div className="flex items-center gap-2.5 rounded-xl border border-danger-500/30 bg-danger-500/15 px-4 py-3 text-sm font-medium text-danger-400">
+            <div className="flex items-center gap-2.5 rounded-xl border border-danger-500/30 bg-danger-500/15 px-5 py-4 text-sm font-medium text-danger-400">
               <AlertCircle className="h-4 w-4 shrink-0" />
               {error}
             </div>
@@ -242,9 +242,9 @@ export default function UploadSection({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="mb-5 overflow-hidden"
+            className="mb-8 overflow-hidden"
           >
-            <div className="rounded-xl border border-primary-500/30 bg-primary-500/10 p-4">
+            <div className="rounded-xl border border-primary-500/30 bg-primary-500/10 p-5 sm:p-6">
               <div className="mb-2.5 flex items-center justify-between text-sm">
                 <div className="flex items-center gap-2">
                   <ScanSearch className="h-4 w-4 animate-spin text-primary-400" />
@@ -276,7 +276,7 @@ export default function UploadSection({
         whileTap={!isLoading ? { scale: 0.98 } : {}}
         onClick={handleSubmit}
         disabled={isLoading}
-        className="flex w-full items-center justify-center gap-2.5 rounded-2xl bg-primary-600 px-6 py-4 text-base font-bold text-white shadow-lg shadow-primary-600/25 transition-all hover:bg-primary-500 hover:shadow-xl hover:shadow-primary-500/30 disabled:cursor-not-allowed disabled:opacity-50"
+        className="mt-2 flex w-full items-center justify-center gap-3 rounded-2xl bg-primary-600 px-6 py-4.5 text-base font-bold text-white shadow-lg shadow-primary-600/25 transition-all hover:bg-primary-500 hover:shadow-xl hover:shadow-primary-500/30 disabled:cursor-not-allowed disabled:opacity-50 sm:py-5"
       >
         {isLoading ? (
           <>

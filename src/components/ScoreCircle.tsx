@@ -86,7 +86,7 @@ export default function ScoreCircle({
           <span className="text-[10px] text-surface-500">/ {maxScore}</span>
         </div>
       </div>
-      <p className={`mt-2 text-center ${size === 'lg' ? 'text-sm font-semibold' : 'text-xs font-medium'} text-surface-400`}>
+      <p className={`mt-4 text-center ${size === 'lg' ? 'text-sm font-semibold' : 'text-xs font-medium'} text-surface-400`}>
         {label}
       </p>
     </motion.div>

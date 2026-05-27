@@ -42,7 +42,7 @@ function Card({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
-      className={`rounded-2xl border border-surface-700 bg-surface-900 p-6 sm:p-8 ${className}`}
+      className={`rounded-2xl border border-surface-700 bg-surface-900 p-8 sm:p-10 ${className}`}
     >
       {children}
     </motion.div>
@@ -51,8 +51,8 @@ function Card({
 
 function SectionHeader({ icon: Icon, title, iconColor = 'text-primary-400' }: { icon: React.ElementType; title: string; iconColor?: string }) {
   return (
-    <div className="mb-6 flex items-center gap-3">
-      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-surface-800">
+    <div className="mb-10 flex items-center gap-4">
+      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-surface-800">
         <Icon className={`h-5 w-5 ${iconColor}`} />
       </div>
       <h3 className="text-lg font-bold text-white">{title}</h3>
@@ -83,24 +83,24 @@ export default function ResultsPanel({ data, onReset }: ResultsPanelProps) {
       .replace(/\n/g, '<br />');
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-10 sm:space-y-12">
 
       {/* Refresh / New Analysis */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="flex justify-center"
+        className="flex justify-center pb-2"
       >
         <motion.button
           type="button"
           whileHover={{ scale: 1.03, y: -2 }}
           whileTap={{ scale: 0.97 }}
           onClick={onReset}
-          className="group relative overflow-hidden rounded-2xl border border-primary-500/30 bg-gradient-to-r from-surface-800 via-surface-800 to-surface-900 px-2 py-2 pr-6 pl-2 shadow-lg shadow-primary-500/10 transition-shadow hover:border-primary-400/50 hover:shadow-xl hover:shadow-primary-500/20"
+          className="group relative overflow-hidden rounded-2xl border border-primary-500/30 bg-gradient-to-r from-surface-800 via-surface-800 to-surface-900 px-3 py-3 pr-8 pl-3 shadow-lg shadow-primary-500/10 transition-shadow hover:border-primary-400/50 hover:shadow-xl hover:shadow-primary-500/20"
         >
           <span className="pointer-events-none absolute inset-0 bg-gradient-to-r from-primary-500/0 via-primary-500/10 to-primary-500/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-          <span className="relative flex items-center gap-3">
+          <span className="relative flex items-center gap-4">
             <span className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 shadow-md shadow-primary-600/30 ring-1 ring-white/10">
               <RotateCcw
                 className="h-5 w-5 text-white transition-transform duration-500 ease-out group-hover:-rotate-[360deg]"
@@ -127,12 +127,12 @@ export default function ResultsPanel({ data, onReset }: ResultsPanelProps) {
         transition={{ duration: 0.5, delay: 0.1 }}
         className={`overflow-hidden rounded-2xl border ${dc.border} ${dc.bg}`}
       >
-        <div className="px-6 py-10 text-center sm:py-12">
+        <div className="px-8 py-12 text-center sm:px-10 sm:py-16">
           <motion.div
             initial={{ scale: 0, rotate: -15 }}
             animate={{ scale: 1, rotate: 0 }}
             transition={{ type: 'spring', stiffness: 120, delay: 0.2 }}
-            className={`mx-auto mb-5 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${dc.gradient} shadow-lg`}
+            className={`mx-auto mb-8 inline-flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br ${dc.gradient} shadow-lg`}
           >
             <dc.ShieldIcon className="h-8 w-8 text-white" />
           </motion.div>
@@ -150,7 +150,7 @@ export default function ResultsPanel({ data, onReset }: ResultsPanelProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className={`mx-auto mt-3 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium ${dc.badge}`}
+            className={`mx-auto mt-5 inline-flex items-center gap-2 rounded-full border px-5 py-2 text-sm font-medium ${dc.badge}`}
           >
             <dc.Icon className="h-3.5 w-3.5" />
             {data.hiring_decision.recommendation}
@@ -160,7 +160,7 @@ export default function ResultsPanel({ data, onReset }: ResultsPanelProps) {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="mx-auto mt-8 grid max-w-sm grid-cols-3 gap-4"
+            className="mx-auto mt-12 grid max-w-md grid-cols-3 gap-6 sm:gap-8"
           >
             <div>
               <p className="text-2xl font-extrabold text-white sm:text-3xl">
@@ -185,12 +185,12 @@ export default function ResultsPanel({ data, onReset }: ResultsPanelProps) {
       </motion.div>
 
       {/* Info Cards */}
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-6 sm:grid-cols-2">
         <motion.div
           initial={{ opacity: 0, x: -15 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2 }}
-          className="flex items-center gap-4 rounded-2xl border border-surface-700 bg-surface-900 p-5"
+          className="flex items-center gap-5 rounded-2xl border border-surface-700 bg-surface-900 p-6 sm:p-7"
         >
           <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-500/15">
             <User className="h-5 w-5 text-primary-400" />
@@ -204,7 +204,7 @@ export default function ResultsPanel({ data, onReset }: ResultsPanelProps) {
           initial={{ opacity: 0, x: 15 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.25 }}
-          className="flex items-center gap-4 rounded-2xl border border-surface-700 bg-surface-900 p-5"
+          className="flex items-center gap-5 rounded-2xl border border-surface-700 bg-surface-900 p-6 sm:p-7"
         >
           <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent-500/15">
             <Briefcase className="h-5 w-5 text-accent-400" />
@@ -220,22 +220,22 @@ export default function ResultsPanel({ data, onReset }: ResultsPanelProps) {
       <Card delay={0.3}>
         <SectionHeader icon={TrendingUp} title="Score Breakdown" />
 
-        <div className="flex flex-col items-center gap-6 sm:flex-row sm:justify-center sm:gap-12">
+        <div className="flex flex-col items-center gap-10 py-4 sm:flex-row sm:justify-center sm:gap-16">
           <ScoreCircle score={data.score_breakdown.overall_score} maxScore={10} label="Overall" size="lg" delay={0.3} />
-          <div className="flex gap-8 sm:gap-10">
+          <div className="flex gap-10 sm:gap-14">
             <ScoreCircle score={data.score_breakdown.semantic_match} maxScore={10} label="Semantic" delay={0.5} />
             <ScoreCircle score={data.score_breakdown.skills_match} maxScore={10} label="Skills" delay={0.7} />
           </div>
         </div>
 
-        <div className="mt-8 space-y-4">
+        <div className="mt-12 space-y-6">
           {[
             { label: 'Overall', pct: overallPct, delay: 0.6 },
             { label: 'Semantic', pct: semanticPct, delay: 0.7 },
             { label: 'Skills', pct: skillsPct, delay: 0.8 },
           ].map((bar) => (
             <div key={bar.label}>
-              <div className="mb-1.5 flex items-center justify-between text-sm">
+              <div className="mb-2.5 flex items-center justify-between text-sm">
                 <span className="font-medium text-surface-300">{bar.label}</span>
                 <span className="font-mono font-bold text-white">{bar.pct.toFixed(0)}%</span>
               </div>
@@ -262,7 +262,7 @@ export default function ResultsPanel({ data, onReset }: ResultsPanelProps) {
       <Card delay={0.4}>
         <SectionHeader icon={Target} title="Skills Analysis" />
 
-        <div className="mb-8 grid grid-cols-3 gap-3 sm:gap-4">
+        <div className="mb-10 grid grid-cols-3 gap-4 sm:gap-6">
           {[
             { icon: Award, count: data.required_skills.length, label: 'Required', color: 'text-primary-400', border: 'border-primary-500/20', bg: 'bg-primary-500/8' },
             { icon: CheckCircle2, count: data.matched_skills.length, label: 'Matched', color: 'text-accent-400', border: 'border-accent-500/20', bg: 'bg-accent-500/8' },
@@ -273,7 +273,7 @@ export default function ResultsPanel({ data, onReset }: ResultsPanelProps) {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className={`rounded-xl border ${stat.border} ${stat.bg} p-3 text-center sm:p-4`}
+              className={`rounded-xl border ${stat.border} ${stat.bg} p-5 text-center sm:p-6`}
             >
               <stat.icon className={`mx-auto mb-1.5 h-4 w-4 sm:h-5 sm:w-5 ${stat.color}`} />
               <p className={`text-xl font-extrabold sm:text-2xl ${stat.color}`}>{stat.count}</p>
@@ -282,13 +282,13 @@ export default function ResultsPanel({ data, onReset }: ResultsPanelProps) {
           ))}
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-10">
           <div>
-            <p className="mb-3 flex items-center gap-2 text-sm font-semibold text-white">
+            <p className="mb-5 flex items-center gap-2 text-sm font-semibold text-white">
               <Zap className="h-4 w-4 text-primary-400" />
               Required Skills
             </p>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-3">
               {data.required_skills.map((skill, i) => {
                 const isMatched = data.matched_skills.map((s) => s.toLowerCase()).includes(skill.toLowerCase());
                 return <SkillBadge key={skill} skill={skill} matched={isMatched} index={i} />;
@@ -298,11 +298,11 @@ export default function ResultsPanel({ data, onReset }: ResultsPanelProps) {
 
           {data.missing_skills.length > 0 && (
             <div>
-              <p className="mb-3 flex items-center gap-2 text-sm font-semibold text-white">
+              <p className="mb-5 flex items-center gap-2 text-sm font-semibold text-white">
                 <AlertTriangle className="h-4 w-4 text-danger-400" />
                 Missing Skills
               </p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-3">
                 {data.missing_skills.map((skill, i) => (
                   <SkillBadge key={skill} skill={skill} matched={false} index={i} />
                 ))}
@@ -314,13 +314,18 @@ export default function ResultsPanel({ data, onReset }: ResultsPanelProps) {
 
       {/* AI Feedback */}
       <Card delay={0.5}>
-        <div className="mb-6 flex items-center justify-between">
-          <SectionHeader icon={MessageSquareText} title="AI Feedback" />
+        <div className="mb-10 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-4">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-surface-800">
+              <MessageSquareText className="h-5 w-5 text-primary-400" />
+            </div>
+            <h3 className="text-lg font-bold text-white">AI Feedback</h3>
+          </div>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setExpandedFeedback(!expandedFeedback)}
-            className="flex items-center gap-1.5 rounded-lg border border-surface-600 bg-surface-800 px-3 py-1.5 text-xs font-semibold text-surface-300 transition-all hover:text-white"
+            className="flex shrink-0 items-center gap-2 rounded-lg border border-surface-600 bg-surface-800 px-4 py-2.5 text-xs font-semibold text-surface-300 transition-all hover:text-white"
           >
             {expandedFeedback ? 'Less' : 'More'}
             <motion.div animate={{ rotate: expandedFeedback ? 180 : 0 }} transition={{ duration: 0.3 }}>
@@ -336,7 +341,7 @@ export default function ResultsPanel({ data, onReset }: ResultsPanelProps) {
           className="relative overflow-hidden"
         >
           <div
-            className="text-sm leading-7 text-surface-300 [&_strong]:text-white"
+            className="text-sm leading-8 text-surface-300 [&_strong]:text-white"
             dangerouslySetInnerHTML={{ __html: formatFeedback(data.ai_feedback) }}
           />
           {!expandedFeedback && (
@@ -360,8 +365,8 @@ export default function ResultsPanel({ data, onReset }: ResultsPanelProps) {
               <span className="ml-2 text-[11px] font-medium text-surface-500">{data.filename}</span>
             </div>
 
-            <div className="max-h-[300px] overflow-y-auto p-4 sm:p-5">
-              <pre className="whitespace-pre-wrap font-mono text-xs leading-6 text-surface-300">
+            <div className="max-h-[300px] overflow-y-auto p-6 sm:p-8">
+              <pre className="whitespace-pre-wrap font-mono text-xs leading-7 text-surface-300">
                 {data.resume_preview.split('\n').map((line, i) => (
                   <div key={i} className="rounded px-1 transition-colors hover:bg-surface-800/50">
                     {highlightLine(line)}

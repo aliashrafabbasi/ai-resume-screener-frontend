@@ -51,7 +51,7 @@ function App() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
-            className="relative z-10 flex w-full justify-center px-4 py-10 sm:px-6 sm:py-14"
+            className="relative z-10 flex w-full justify-center px-4 py-12 sm:px-8 sm:py-16 lg:py-20"
           >
             <div className="w-full max-w-3xl">
               <ResultsPanel data={result} onReset={handleReset} />
@@ -67,7 +67,7 @@ function App() {
             className="relative z-10 flex items-center justify-center px-4 sm:px-6"
             style={{ minHeight: 'calc(100dvh - 60px)' }}
           >
-            <div className="w-full max-w-xl py-10">
+            <div className="w-full max-w-xl py-12 sm:py-16">
               <UploadSection
                 onSubmit={handleSubmit}
                 isLoading={isLoading}
