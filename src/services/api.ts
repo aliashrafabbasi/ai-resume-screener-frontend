@@ -1,7 +1,22 @@
 import axios from 'axios';
 import type { ResumeAnalysis } from '../types';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL;
+function getApiBaseUrl(): string {
+  const configuredUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '');
+
+  if (!configuredUrl) {
+    throw new Error('VITE_API_URL is not set. Add it to your .env file.');
+  }
+
+  // In dev, use Vite proxy (/api) to avoid CORS — proxy target comes from VITE_API_URL
+  if (import.meta.env.DEV) {
+    return '/api';
+  }
+
+  return configuredUrl;
+}
+
+const API_BASE_URL = getApiBaseUrl();
 
 export async function uploadResume(
   file: File,
