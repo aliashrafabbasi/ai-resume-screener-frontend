@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import type { ResumeAnalysis } from './types';
-import { uploadResume } from './services/api';
+import { uploadResume, getApiErrorMessage } from './services/api';
 import AnimatedBackground from './components/AnimatedBackground';
 import Header from './components/Header';
 import UploadSection from './components/UploadSection';
@@ -24,9 +24,7 @@ function App() {
       });
       setResult(data);
     } catch (err: unknown) {
-      const message =
-        err instanceof Error ? err.message : 'Failed to analyze resume. Please try again.';
-      setError(message);
+      setError(getApiErrorMessage(err));
     } finally {
       setIsLoading(false);
       setUploadProgress(0);

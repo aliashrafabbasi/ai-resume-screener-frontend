@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { isAxiosError } from 'axios';
 import type { ResumeAnalysis } from '../types';
 
 function getApiBaseUrl(): string {
@@ -18,6 +18,40 @@ function getApiBaseUrl(): string {
 
 const API_BASE_URL = getApiBaseUrl();
 
+export function getApiErrorMessage(error: unknown): string {
+  if (isAxiosError(error)) {
+    const status = error.response?.status;
+
+    if (status === 502 || status === 503 || status === 504) {
+      return (
+        'Backend unavailable (502). Start the API with ' +
+        'uvicorn main:app --reload --port 8000 and ensure ' +
+        'VITE_API_URL=http://localhost:8000 in the frontend .env.'
+      );
+    }
+
+    if (error.code === 'ECONNABORTED') {
+      return 'Request timed out. The analysis can take up to 2 minutes — please try again.';
+    }
+
+    const detail = error.response?.data?.detail;
+
+    if (typeof detail === 'string') {
+      return detail;
+    }
+
+    if (error.message) {
+      return error.message;
+    }
+  }
+
+  if (error instanceof Error) {
+    return error.message;
+  }
+
+  return 'Failed to analyze resume. Please try again.';
+}
+
 export async function uploadResume(
   file: File,
   jobDescription: string,
@@ -32,6 +66,7 @@ export async function uploadResume(
     formData,
     {
       headers: { 'Content-Type': 'multipart/form-data' },
+      timeout: 120000,
       onUploadProgress: (progressEvent) => {
         if (progressEvent.total && onProgress) {
           const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);

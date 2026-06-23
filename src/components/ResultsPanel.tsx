@@ -62,9 +62,13 @@ function SectionHeader({ icon: Icon, title, iconColor = 'text-primary-400' }: { 
 
 export default function ResultsPanel({ data, onReset }: ResultsPanelProps) {
   const [expandedFeedback, setExpandedFeedback] = useState(false);
-  const overallPct = Math.min((data.score_breakdown.overall_score / 10) * 100, 100);
-  const semanticPct = Math.min((data.score_breakdown.semantic_match / 10) * 100, 100);
-  const skillsPct = Math.min((data.score_breakdown.skills_match / 10) * 100, 100);
+  const { overall_score, semantic_match, skills_match } = data.score_breakdown;
+  const overallPct = Math.min(Math.max(overall_score, 0), 100);
+  const semanticPct = Math.min(Math.max(semantic_match, 0), 100);
+  const skillsPct = Math.min(Math.max(skills_match, 0), 100);
+  const skillMatchRate = data.required_skills.length
+    ? Math.round((data.matched_skills.length / data.required_skills.length) * 100)
+    : 0;
 
   const getDecisionConfig = () => {
     const d = data.hiring_decision.decision.toLowerCase();
@@ -176,9 +180,9 @@ export default function ResultsPanel({ data, onReset }: ResultsPanelProps) {
             </div>
             <div>
               <p className="text-2xl font-extrabold text-white sm:text-3xl">
-                <AnimatedCounter value={data.matched_skills.length} />
+                <AnimatedCounter value={skillMatchRate} suffix="%" />
               </p>
-              <p className="mt-1 text-xs text-surface-400">Matched</p>
+              <p className="mt-1 text-xs text-surface-400">Skills Hit</p>
             </div>
           </motion.div>
         </div>
@@ -221,10 +225,10 @@ export default function ResultsPanel({ data, onReset }: ResultsPanelProps) {
         <SectionHeader icon={TrendingUp} title="Score Breakdown" />
 
         <div className="flex flex-col items-center gap-10 py-4 sm:flex-row sm:justify-center sm:gap-16">
-          <ScoreCircle score={data.score_breakdown.overall_score} maxScore={10} label="Overall" size="lg" delay={0.3} />
+          <ScoreCircle score={data.score_breakdown.overall_score} maxScore={100} label="Overall" size="lg" delay={0.3} />
           <div className="flex gap-10 sm:gap-14">
-            <ScoreCircle score={data.score_breakdown.semantic_match} maxScore={10} label="Semantic" delay={0.5} />
-            <ScoreCircle score={data.score_breakdown.skills_match} maxScore={10} label="Skills" delay={0.7} />
+            <ScoreCircle score={data.score_breakdown.semantic_match} maxScore={100} label="Semantic" delay={0.5} />
+            <ScoreCircle score={data.score_breakdown.skills_match} maxScore={100} label="Skills" delay={0.7} />
           </div>
         </div>
 
